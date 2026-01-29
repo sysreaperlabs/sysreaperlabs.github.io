@@ -19,18 +19,18 @@
             height: 100%;
             background-color: var(--dark-bg);
             font-family: 'Courier New', Courier, monospace;
-            overflow: hidden; /* Keeps the focus on the terminal */
+            overflow-x: hidden;
         }
 
-        /* Video Background Styling */
+        /* Video Background Layer */
         #bg-video {
             position: fixed;
             right: 0;
             bottom: 0;
             min-width: 100%;
             min-height: 100%;
-            z-index: -1; /* Puts video behind content */
-            filter: brightness(0.3) grayscale(0.5); /* Makes text easier to read */
+            z-index: -1;
+            filter: brightness(0.25) contrast(1.2);
             object-fit: cover;
         }
 
@@ -39,49 +39,91 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            width: 100%;
-            z-index: 1;
+            min-height: 100vh;
+            padding: 40px 20px;
+            box-sizing: border-box;
         }
 
         .logo-container {
-            margin-bottom: 20px;
-            z-index: 2;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
+        /* Adjusted Logo Size - Large & Prominent */
         .logo {
-            max-width: 180px;
-            filter: drop-shadow(0 0 10px var(--sys-purple));
+            width: 320px; 
+            max-width: 80%;
+            height: auto;
+            filter: drop-shadow(0 0 15px var(--sys-purple));
         }
 
         .terminal-window {
-            background: rgba(0, 0, 0, 0.85); /* Slight transparency to see video */
+            background: rgba(0, 0, 0, 0.9);
             border: 1px solid #333;
-            border-radius: 5px;
-            width: 90%;
-            max-width: 800px;
-            padding: 25px;
-            box-shadow: 0 10px 50px rgba(0,0,0,1);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 900px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,1);
             position: relative;
         }
 
-        /* ... Remaining styles from previous version ... */
-        .terminal-header { position: absolute; top: 0; left: 0; right: 0; height: 25px; background: #1a1a1a; border-bottom: 1px solid #333; display: flex; align-items: center; padding-left: 10px; }
-        .dot { height: 8px; width: 8px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .terminal-header {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 30px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-        .line { margin-bottom: 12px; line-height: 1.4; }
+
+        .line { margin-bottom: 18px; line-height: 1.6; }
         .cmd { color: var(--text-white); font-weight: bold; }
-        .output { color: var(--text-white); opacity: 0.9; margin-left: 15px; font-size: 14px; }
+        .output { color: var(--text-white); opacity: 0.95; margin-left: 20px; font-size: 15px; }
         .highlight { color: var(--sys-purple); font-weight: bold; }
-        .cursor { display: inline-block; width: 8px; height: 15px; background: var(--terminal-green); animation: blink 1s infinite; vertical-align: middle; }
+        
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: var(--terminal-green);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
         @keyframes blink { 50% { opacity: 0; } }
-        .contact-btn { margin-top: 25px; display: inline-block; padding: 12px 30px; border: 1px solid var(--terminal-green); color: var(--terminal-green); text-decoration: none; font-weight: bold; transition: 0.3s; text-transform: uppercase; letter-spacing: 2px; background: rgba(0,0,0,0.5); }
-        .contact-btn:hover { background: var(--terminal-green); color: #000; box-shadow: 0 0 20px var(--terminal-green); }
+
+        .contact-btn {
+            margin-top: 40px;
+            display: inline-block;
+            padding: 15px 40px;
+            border: 2px solid var(--terminal-green);
+            color: var(--terminal-green);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: rgba(0,0,0,0.6);
+        }
+
+        .contact-btn:hover {
+            background: var(--terminal-green);
+            color: #000;
+            box-shadow: 0 0 30px var(--terminal-green);
+            transform: translateY(-3px);
+        }
     </style>
 </head>
 <body>
 
-    <video autoplay muted loop id="bg-video">
+    <video autoplay muted loop playsinline id="bg-video">
         <source src="promo.mp4" type="video/mp4">
     </video>
 
@@ -95,35 +137,35 @@
                 <span class="dot red"></span>
                 <span class="dot yellow"></span>
                 <span class="dot green"></span>
-                <span style="margin-left: 10px; font-size: 10px; color: #666;">ssh operator@sysreaperlabs</span>
+                <span style="margin-left: 12px; font-size: 12px; color: #888;">ssh operator@sysreaperlabs</span>
             </div>
             <br>
             
             <div class="line">
-                <span class="cmd">sysreaper@labs:~$</span> whoami --vets-profile
+                <span class="cmd">sysreaper@labs:~$</span> whoami --profile
                 <div class="output">
-                    > [cite_start]<span class="highlight">VETERAN OWNED & OPERATED.</span> [cite: 39]<br>
-                    > [cite_start]U.S. Army Aviation (CH-47D) & Tactical Comms. [cite: 41]<br>
-                    > [cite_start]<span class="highlight">ACTIVE SECRET CLEARANCE</span>. [cite: 68]<br>
-                    > [cite_start]15+ Years Enterprise IT & Cybersecurity Leadership. [cite: 4, 7]
+                    > <span class="highlight">VETERAN OWNED & OPERATED.</span><br>
+                    > U.S. Army Aviation (CH-47D) & Tactical Secure Comms.<br>
+                    > <span class="highlight">ACTIVE SECRET CLEARANCE.</span><br>
+                    > 15+ Years Enterprise IT & Cybersecurity Leadership.
                 </div>
             </div>
 
             <div class="line">
                 <span class="cmd">sysreaper@labs:~$</span> list --expert-credentials
                 <div class="output">
-                    [+] CISSP | OSCP | CASP | CEH | [cite_start]Sec+. [cite: 7, 55, 56, 58]<br>
-                    [cite_start][+] ISSO Authority for DoD-Regulated Environments. [cite: 9, 11]<br>
-                    [cite_start][+] Azure/AWS IAM & Zero Trust Architecture. [cite: 5, 13]
+                    [+] CISSP | OSCP | CASP | CEH | Sec+<br>
+                    [+] ISSO Authority for DoD-Regulated Environments<br>
+                    [+] Azure/AWS IAM & Zero Trust Architecture
                 </div>
             </div>
 
             <div class="line">
                 <span class="cmd">sysreaper@labs:~$</span> list --compliance-readiness
                 <div class="output">
-                    > [cite_start]CMMC 2.0 / FedRAMP / DFARS / ITAR. [cite: 6, 12, 15]<br>
-                    > [cite_start]NIST SP 800-171 & 800-53 Operations. [cite: 6, 15]<br>
-                    > [cite_start]Continuous Monitoring: Splunk & Azure Security Center. [cite: 18, 66]
+                    > CMMC 2.0 / FedRAMP / DFARS / ITAR<br>
+                    > NIST SP 800-171 & 800-53 Control Implementation<br>
+                    > Continuous Monitoring: Splunk & Azure Security Center
                 </div>
             </div>
 
@@ -131,7 +173,7 @@
                 <span class="cmd">sysreaper@labs:~$</span> run readiness_check.sh
                 <div class="output" style="color: var(--sys-purple);">
                     [*] ANALYZING CONTROLS...<br>
-                    [cite_start][*] STATUS: Zero major non-conformances in recent assessments. [cite: 15]<br>
+                    [*] STATUS: Zero major non-conformances in recent assessments.<br>
                     [*] ADVISORY: Secure your posture before the C3PAO arrives.
                 </div>
             </div>
