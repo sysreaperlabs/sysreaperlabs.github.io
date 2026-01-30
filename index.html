@@ -17,40 +17,39 @@
             margin: 0; padding: 0; width: 100%; height: 100%;
             background-color: var(--dark-bg);
             font-family: 'Courier New', Courier, monospace;
-            overflow-x: hidden; color: var(--terminal-green);
-        }
-
-        /* Video Background with Fade Logic */
-        #bg-video {
-            position: fixed; right: 0; bottom: 0;
-            min-width: 100%; min-height: 100%;
-            z-index: -1; opacity: 0;
-            transition: opacity 2s ease-in-out;
-            object-fit: cover;
-            filter: brightness(0.2); /* Darkened slightly for better text contrast */
+            color: var(--terminal-green);
         }
 
         .container {
             display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            min-height: 100vh; padding: 40px 20px;
+            justify-content: flex-start; align-items: center;
+            min-height: 100vh; padding: 60px 20px;
+            box-sizing: border-box;
         }
 
+        /* Merged Glowing/Pulsing Logo Animation */
         .logo-container {
-            margin-bottom: 30px; transition: opacity 2s ease-in-out;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: pulse 4s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 5px var(--sys-purple)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 25px var(--sys-purple)); transform: scale(1.02); }
+            100% { filter: drop-shadow(0 0 5px var(--sys-purple)); transform: scale(1); }
         }
 
         .logo {
-            width: 320px; max-width: 80%; height: auto;
-            filter: drop-shadow(0 0 15px var(--sys-purple));
+            width: 320px; max-width: 85%; height: auto;
         }
 
         .terminal-window {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             border: 1px solid #333; border-radius: 8px;
             width: 100%; max-width: 900px; padding: 30px;
-            box-shadow: 0 20px 60px rgba(0,0,0,1);
-            position: relative; z-index: 10;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            position: relative; margin-bottom: 30px;
         }
 
         .terminal-header {
@@ -78,11 +77,32 @@
 
         @keyframes blink { 50% { opacity: 0; } }
 
+        /* Video Section - Moved to Bottom */
+        .video-wrapper {
+            width: 100%; max-width: 900px;
+            border: 1px solid #333; border-radius: 8px;
+            overflow: hidden; background: #000;
+            margin-bottom: 30px; position: relative;
+            aspect-ratio: 16 / 9;
+        }
+
+        #promo-video {
+            width: 100%; height: 100%; object-fit: cover;
+            display: block;
+        }
+
+        .video-overlay {
+            position: absolute; top: 10px; left: 10px;
+            font-size: 12px; color: var(--sys-red);
+            text-shadow: 1px 1px 2px #000;
+        }
+
         .contact-btn {
-            margin-top: 40px; display: inline-block; padding: 15px 40px;
+            display: inline-block; padding: 15px 40px;
             border: 2px solid var(--terminal-green); color: var(--terminal-green);
             text-decoration: none; font-weight: bold; transition: all 0.3s ease;
-            text-transform: uppercase; letter-spacing: 3px; background: rgba(0,0,0,0.6);
+            text-transform: uppercase; letter-spacing: 3px; background: transparent;
+            margin-bottom: 60px;
         }
 
         .contact-btn:hover {
@@ -92,10 +112,6 @@
     </style>
 </head>
 <body>
-
-    <video muted loop playsinline id="bg-video">
-        <source src="promo.mp4" type="video/mp4">
-    </video>
 
     <div class="container">
         <div class="logo-container" id="main-logo">
@@ -149,40 +165,30 @@
             </div>
         </div>
 
+        <div class="video-wrapper">
+            <div class="video-overlay">● LIVE_FEED: SYSTEM_INTEL</div>
+            <video muted loop playsinline id="promo-video">
+                <source src="promo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
         <a href="mailto:reaperbusiness@sysreaperlabs.com" class="contact-btn">Initialize Connection</a>
     </div>
 
     <script>
-        const video = document.getElementById('bg-video');
+        const v = document.getElementById('promo-video');
         
-        // Function to attempt video play
-        function attemptPlay() {
-            video.style.opacity = '1';
-            video.play().catch(e => {
-                console.log("Autoplay blocked. Waiting for interaction.");
+        // Auto-play attempt
+        window.addEventListener('load', () => {
+            v.play().catch(() => {
+                console.log("Autoplay prevented. Waiting for interaction.");
             });
-        }
+        });
 
-        // Delay start to show logo first
-        setTimeout(attemptPlay, 3000);
-
-        // Interaction listener to overcome browser "Autoplay" blocks
-        document.body.addEventListener('click', () => {
-            if (video.paused) video.play();
-        }, {once: true});
-
-        document.body.addEventListener('touchstart', () => {
-            if (video.paused) video.play();
-        }, {once: true});
-
-        // Loop fade logic
-        video.onended = function() {
-            video.style.opacity = '0';
-            setTimeout(() => {
-                video.style.opacity = '1';
-                video.play();
-            }, 2000);
-        };
+        // Trigger play on first interaction (mobile requirement)
+        document.addEventListener('click', () => { v.play(); }, {once: true});
+        document.addEventListener('touchstart', () => { v.play(); }, {once: true});
     </script>
 </body>
 </html>
