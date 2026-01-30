@@ -10,6 +10,7 @@
             --dark-bg: #080808;
             --sys-purple: #9d81f7;
             --text-white: #e0e0e0;
+            --sys-red: #ff5f56;
         }
 
         body, html {
@@ -26,7 +27,7 @@
             z-index: -1; opacity: 0;
             transition: opacity 2s ease-in-out;
             object-fit: cover;
-            filter: brightness(0.3);
+            filter: brightness(0.2); /* Darkened slightly for better text contrast */
         }
 
         .container {
@@ -45,7 +46,7 @@
         }
 
         .terminal-window {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
             border: 1px solid #333; border-radius: 8px;
             width: 100%; max-width: 900px; padding: 30px;
             box-shadow: 0 20px 60px rgba(0,0,0,1);
@@ -61,13 +62,13 @@
         }
 
         .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
-        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        .red-dot { background: #ff5f56; } .yellow-dot { background: #ffbd2e; } .green-dot { background: #27c93f; }
 
         .line { margin-bottom: 18px; line-height: 1.6; }
-        /* Prompt is now Green */
         .cmd { color: var(--terminal-green); font-weight: bold; }
         .output { color: var(--text-white); opacity: 0.95; margin-left: 20px; font-size: 15px; }
         .highlight { color: var(--sys-purple); font-weight: bold; }
+        .status-alert { color: var(--sys-red); font-weight: bold; }
         
         .cursor {
             display: inline-block; width: 10px; height: 18px;
@@ -103,7 +104,7 @@
 
         <div class="terminal-window">
             <div class="terminal-header">
-                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                <span class="dot red-dot"></span><span class="dot yellow-dot"></span><span class="dot green-dot"></span>
                 <span style="margin-left: 12px; font-size: 12px; color: #888;">sysreaperlabs@parrot: ~</span>
             </div>
             <br>
@@ -136,7 +137,7 @@
             <div class="line">
                 <span class="cmd">sysreaperlabs@parrot:~$</span> run audit_prep.sh
                 <div class="output" style="color: var(--sys-purple);">
-                    [*] STATUS: No critical or high-risk non-conformances identified during recent internal and independent readiness assessments. <br>
+                    [*] <span class="status-alert">STATUS:</span> No critical or high-risk non-conformances identified during recent internal and independent readiness assessments. <br>
                     [*] ASSESSMENT: Controls implemented with demonstrable evidence mapped directly to regulatory and contractual requirements. <br>
                     [*] ADVISORY: Organization positioned to enter formal assessment phases with confidence prior to C3PAO or government-led evaluation. <br>
                     [*] RESULT: Audit-ready posture focused on sustainability, operational maturity, and long-term compliance rather than short-term remediation.
@@ -154,13 +155,27 @@
     <script>
         const video = document.getElementById('bg-video');
         
-        // Initial delay before video starts
-        setTimeout(() => {
+        // Function to attempt video play
+        function attemptPlay() {
             video.style.opacity = '1';
-            video.play().catch(e => console.log("Autoplay blocked, needs user interaction"));
-        }, 3000);
+            video.play().catch(e => {
+                console.log("Autoplay blocked. Waiting for interaction.");
+            });
+        }
 
-        // Optional: Logic to fade video out/in every loop
+        // Delay start to show logo first
+        setTimeout(attemptPlay, 3000);
+
+        // Interaction listener to overcome browser "Autoplay" blocks
+        document.body.addEventListener('click', () => {
+            if (video.paused) video.play();
+        }, {once: true});
+
+        document.body.addEventListener('touchstart', () => {
+            if (video.paused) video.play();
+        }, {once: true});
+
+        // Loop fade logic
         video.onended = function() {
             video.style.opacity = '0';
             setTimeout(() => {
