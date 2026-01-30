@@ -68,6 +68,7 @@
         .output { color: var(--text-white); opacity: 0.95; margin-left: 20px; font-size: 15px; }
         .highlight { color: var(--sys-purple); font-weight: bold; }
         .status-alert { color: var(--sys-red); font-weight: bold; }
+        .cmd-user { color: #ffffff; font-weight: bold; }
         
         .cursor {
             display: inline-block; width: 10px; height: 18px;
@@ -126,7 +127,7 @@
             <br>
             
             <div class="line">
-                <span class="cmd">sysreaperlabs@parrot:~$</span> about the company --whoami
+                <span class="cmd-user">sysreaperlabs@parrot:</span><span class="cmd">~$ about the company --whoami</span>
                 <div class="output">
                     > <span class="highlight">VETERAN OWNED & OPERATED.</span> <br>
                     > Former U.S. Army Aviation professional with operational experience in tactical secure communications and mission-critical systems. <br>
@@ -138,7 +139,7 @@
             </div>
 
             <div class="line">
-                <span class="cmd">sysreaperlabs@parrot:~$</span> list of services --offerings
+                <span class="cmd-user">sysreaperlabs@parrot:</span><span class="cmd">~$ list of services --offerings</span>
                 <div class="output">
                     [+] CMMC 2.0 readiness and ongoing compliance support, including Level 1 and Level 2 alignment under the final rule. <br>
                     [+] DFARS 252.204-7012 implementation, validation, and incident response readiness. <br>
@@ -151,7 +152,7 @@
             </div>
 
             <div class="line">
-                <span class="cmd">sysreaperlabs@parrot:~$</span> run audit_prep_protocol.sh
+                <span class="cmd-user">sysreaperlabs@parrot:</span><span class="cmd">~$ run audit_prep_protocol.sh</span>
                 <div class="output" style="color: var(--sys-purple);">
                     [*] <span class="status-alert">STATUS:</span> No critical or high-risk non-conformances identified during recent internal and independent readiness assessments. <br>
                     [*] <span class="status-alert">ASSESSMENT:</span> Controls implemented with demonstrable evidence mapped directly to regulatory and contractual requirements. <br>
