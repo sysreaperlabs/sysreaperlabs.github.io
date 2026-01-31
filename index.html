@@ -199,14 +199,10 @@
             </video>
         </div>
 
-        <div class="unmute-container">
+ <div class="unmute-container">
             <button class="audio-btn" id="audio-trigger">▶ UNMUTE INTEL BRIEFING</button>
         </div>
-
-        <div class="mute-container">
-            <button class="audio-btn" id="audio-trigger">▶ UNMUTE INTEL BRIEFING</button>
-        </div>
-
+        
         <a href="mailto:reaperbusiness@sysreaperlabs.com" class="contact-btn">Initialize Connection</a>
     </div>
 
@@ -221,18 +217,33 @@
             });
         });
 
-        // Function to unmute and restart the video so they hear the full script
-        function enableAudio() {
-            v.muted = false;
-            v.currentTime = 0; // Restart to beginning of the new script
-            v.play();
-            audioBtn.innerText = "🔊 INTEL LIVE";
-            audioBtn.style.borderColor = "var(--terminal-green)";
-            audioBtn.style.color = "var(--terminal-green)";
-        }
+        // Toggle Mute/Unmute Function
+        audioBtn.addEventListener('click', () => {
+            if (v.muted) {
+                // Unmute and play from start
+                v.muted = false;
+                v.currentTime = 0; 
+                v.play();
+                audioBtn.innerHTML = "■ MUTE INTEL BRIEFING";
+                audioBtn.style.borderColor = "var(--sys-red)";
+                audioBtn.style.color = "var(--sys-red)";
+            } else {
+                // Mute back
+                v.muted = true;
+                audioBtn.innerHTML = "▶ UNMUTE INTEL BRIEFING";
+                audioBtn.style.borderColor = "var(--terminal-green)";
+                audioBtn.style.color = "var(--terminal-green)";
+            }
+        });
 
-        // Listen for the specific click on the unmute button
-        audioBtn.addEventListener('click', enableAudio);
+        // Loop fade logic
+        v.onended = function() {
+            v.style.opacity = '0';
+            setTimeout(() => {
+                v.style.opacity = '1';
+                v.play();
+            }, 2000);
+        };
 
         // General interaction fallback for mobile
         document.addEventListener('touchstart', () => { v.play(); }, {once: true});
