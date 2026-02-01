@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Intel | SysReaper Labs</title>
+    <style>
+        :root {
+            --terminal-green: #09ff00;
+            --dark-bg: #080808;
+            --sys-purple: #a18aec;
+            --text-white: #e0e0e0;
+            --sys-red: #e9291f;
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: var(--dark-bg);
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--terminal-green);
+        }
+
+        .container {
+            display: flex; flex-direction: column;
+            justify-content: flex-start; align-items: center;
+            min-height: 100vh; padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .nav-bar {
+            width: 100%; max-width: 900px;
+            display: flex; justify-content: center;
+            gap: 25px; margin-bottom: 30px;
+            padding: 10px 0; border-bottom: 1px solid #222;
+        }
+
+        .nav-link {
+            color: var(--terminal-green); text-decoration: none;
+            font-size: 13px; letter-spacing: 2px; transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--sys-purple); text-shadow: 0 0 8px var(--sys-purple);
+        }
+
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid #333; border-radius: 8px;
+            width: 100%; max-width: 950px; padding: 30px;
+            box-shadow: 0 0 20px rgba(161, 138, 236, 0.1);
+            position: relative; margin-bottom: 30px;
+        }
+
+        .terminal-header {
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 30px; background: #1a1a1a;
+            border-bottom: 1px solid #333; display: flex;
+            align-items: center; padding-left: 15px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Profile Section Styling */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-grid { grid-template-columns: 1fr; }
+        }
+
+        .profile-card {
+            border: 1px solid #222;
+            padding: 20px;
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--sys-purple);
+            filter: grayscale(100%) contrast(120%);
+            margin-bottom: 15px;
+            transition: 0.5s;
+        }
+
+        .profile-card:hover .profile-img {
+            filter: grayscale(0%) contrast(100%);
+            box-shadow: 0 0 15px var(--sys-purple);
+        }
+
+        .label { color: var(--sys-red); font-weight: bold; text-transform: uppercase; font-size: 12px; }
+        .highlight { color: var(--sys-purple); font-weight: bold; }
+        .output { color: var(--text-white); font-size: 13px; line-height: 1.5; margin-top: 10px; }
+
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+        .red-dot { background: #ff5f56; } .yellow-dot { background: #ffbd2e; } .green-dot { background: #27c93f; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-link">[ 01 : HOME ]</a>
+            <a href="services.html" class="nav-link">[ 02 : SERVICES ]</a>
+            <a href="about.html" class="nav-link active">[ 03 : INTEL ]</a>
+            <a href="contact.html" class="nav-link">[ 04 : CONNECT ]</a>
+        </nav>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="dot red-dot"></span><span class="dot yellow-dot"></span><span class="dot green-dot"></span>
+                <span style="margin-left: 12px; font-size: 12px; color: #888;">sysreaperlabs@parrot: ~/leadership_dossier</span>
+            </div>
+            <br>
+            <p class="highlight"># EXECUTING LEADERSHIP_RECON.SH...</p>
+            
+            <div class="profile-grid">
+                <div class="profile-card">
+                    <img src="ceo.png" alt="Wesley Hardy" class="profile-img">
+                    <span class="label">SUBJECT:</span> Wesley Hardy<br>
+                    <span class="label">ROLE:</span> CEO / Lead Security Architect
+                    <div class="output">
+                        Veteran Signal Corps professional with a foundation in tactical aerospace communications and FAA compliance. <br><br>
+                        Specializes in dismantling enterprise data silos and hardening infrastructure for global military reconnaissance operations. A "Silo Killer" who bridges the gap between hardware architecture and sustainable government compliance.
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <img src="coo.png" alt="COO" class="profile-img">
+                    <span class="label">SUBJECT:</span> [Partner Name]<br>
+                    <span class="label">ROLE:</span> COO / Systems Operations
+                    <div class="output">
+                        [Insert background summary here - e.g., Senior Operations expert with extensive experience in scaling technical teams and streamlining mission-critical workflows.] <br><br>
+                        Focuses on the operational execution of security frameworks and ensuring organizational stability in high-growth, high-compliance environments.
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+                <span class="highlight">[ MISSION PHILOSOPHY ]</span>
+                <p class="output">
+                    SysReaper Labs was founded to bridge the gap between "checkbox compliance" and operational reality. With deep roots in Army Aviation and Global ERP management, our leadership treats security not as a hurdle, but as the foundation of a high-performing system.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
