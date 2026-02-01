@@ -10,8 +10,6 @@
     <link rel="canonical" href="https://sysreaperlabs.com/" />
 
     <style>
-    /* Your existing CSS starts here */
-
         :root {
             --terminal-green: #09ff00;
             --dark-bg: #080808;
@@ -30,11 +28,35 @@
         .container {
             display: flex; flex-direction: column;
             justify-content: flex-start; align-items: center;
-            min-height: 100vh; padding: 60px 20px;
+            min-height: 100vh; padding: 40px 20px;
             box-sizing: border-box;
         }
 
-        /* Merged Glowing/Pulsing Logo Animation */
+        /* NEW: Global Navigation Bar */
+        .nav-bar {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding: 10px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .nav-link {
+            color: var(--terminal-green);
+            text-decoration: none;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--sys-purple);
+            text-shadow: 0 0 8px var(--sys-purple);
+        }
+
         .logo-container {
             margin-bottom: 40px;
             text-align: center;
@@ -85,7 +107,6 @@
 
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Video Section - Moved to Bottom */
         .video-wrapper {
             width: 100%; max-width: 900px;
             border: 1px solid #333; border-radius: 8px;
@@ -105,7 +126,6 @@
             text-shadow: 1px 1px 2px #000;
         }
 
-        /* NEW: Unmute Button Styling */
         .unmute-container {
             width: 100%; max-width: 900px;
             text-align: right; margin-bottom: 30px;
@@ -147,6 +167,13 @@
 <body>
 
     <div class="container">
+        <nav class="nav-bar">
+            <a href="index.html" class="nav-link active">[ 01 : HOME ]</a>
+            <a href="services.html" class="nav-link">[ 02 : SERVICES ]</a>
+            <a href="about.html" class="nav-link">[ 03 : INTEL ]</a>
+            <a href="contact.html" class="nav-link">[ 04 : CONNECT ]</a>
+        </nav>
+
         <div class="logo-container" id="main-logo">
             <img src="5764.png" alt="SysReaper Labs" class="logo">
         </div>
@@ -206,7 +233,7 @@
             </video>
         </div>
 
- <div class="unmute-container">
+        <div class="unmute-container">
             <button class="audio-btn" id="audio-trigger">▶ UNMUTE INTEL BRIEFING</button>
         </div>
         
@@ -217,17 +244,14 @@
         const v = document.getElementById('promo-video');
         const audioBtn = document.getElementById('audio-trigger');
         
-        // Auto-play attempt (Muted)
         window.addEventListener('load', () => {
             v.play().catch(() => {
                 console.log("Autoplay prevented. Waiting for interaction.");
             });
         });
 
-        // Toggle Mute/Unmute Function
         audioBtn.addEventListener('click', () => {
             if (v.muted) {
-                // Unmute and play from start
                 v.muted = false;
                 v.currentTime = 0; 
                 v.play();
@@ -235,15 +259,13 @@
                 audioBtn.style.borderColor = "var(--sys-red)";
                 audioBtn.style.color = "var(--sys-red)";
             } else {
-                // Mute back
                 v.muted = true;
                 audioBtn.innerHTML = "▶ UNMUTE INTEL BRIEFING";
-                audioBtn.style.borderColor = "var(--terminal-green)";
-                audioBtn.style.color = "var(--terminal-green)";
+                audioBtn.style.borderColor = "var(--sys-purple)";
+                audioBtn.style.color = "var(--sys-purple)";
             }
         });
 
-        // Loop fade logic
         v.onended = function() {
             v.style.opacity = '0';
             setTimeout(() => {
@@ -252,7 +274,6 @@
             }, 2000);
         };
 
-        // General interaction fallback for mobile
         document.addEventListener('touchstart', () => { v.play(); }, {once: true});
     </script>
 </body>
