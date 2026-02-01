@@ -59,44 +59,73 @@
             border-radius: 8px 8px 0 0;
         }
 
+        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+        .red-dot { background: #ff5f56; } .yellow-dot { background: #ffbd2e; } .green-dot { background: #27c93f; }
+
         /* Profile Section Styling */
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 40px;
             margin-top: 20px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 850px) {
             .profile-grid { grid-template-columns: 1fr; }
         }
 
         .profile-card {
             border: 1px solid #222;
-            padding: 20px;
+            padding: 25px;
             background: rgba(10, 10, 10, 0.5);
+            position: relative;
+        }
+
+        /* Glowing Image Animation */
+        .img-container {
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: pulse-glow 4s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0% { filter: drop-shadow(0 0 5px var(--sys-purple)); }
+            50% { filter: drop-shadow(0 0 20px var(--sys-purple)); }
+            100% { filter: drop-shadow(0 0 5px var(--sys-purple)); }
         }
 
         .profile-img {
             width: 100%;
+            max-width: 300px;
             height: auto;
-            border: 1px solid var(--sys-purple);
-            filter: grayscale(100%) contrast(120%);
-            margin-bottom: 15px;
+            border: 1px solid #444;
+            /* grayscale start for that 'dossier' look, goes to color on hover */
+            filter: grayscale(100%);
             transition: 0.5s;
         }
 
         .profile-card:hover .profile-img {
-            filter: grayscale(0%) contrast(100%);
-            box-shadow: 0 0 15px var(--sys-purple);
+            filter: grayscale(0%);
         }
 
-        .label { color: var(--sys-red); font-weight: bold; text-transform: uppercase; font-size: 12px; }
+        .label { color: var(--sys-red); font-weight: bold; text-transform: uppercase; font-size: 12px; margin-right: 5px; }
         .highlight { color: var(--sys-purple); font-weight: bold; }
-        .output { color: var(--text-white); font-size: 13px; line-height: 1.5; margin-top: 10px; }
+        .output { color: var(--text-white); font-size: 14px; line-height: 1.6; margin-top: 15px; }
+        
+        .section-break {
+            border-top: 1px solid #333;
+            margin: 20px 0;
+            padding-top: 20px;
+        }
 
-        .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
-        .red-dot { background: #ff5f56; } .yellow-dot { background: #ffbd2e; } .green-dot { background: #27c93f; }
+        .cursor {
+            display: inline-block; width: 10px; height: 18px;
+            background: var(--terminal-green); animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
     </style>
 </head>
 <body>
@@ -115,35 +144,46 @@
                 <span style="margin-left: 12px; font-size: 12px; color: #888;">sysreaperlabs@parrot: ~/leadership_dossier</span>
             </div>
             <br>
-            <p class="highlight"># EXECUTING LEADERSHIP_RECON.SH...</p>
+            <p class="highlight"># ACCESSING_PERSONNEL_FILES... [SUCCESS]</p>
             
             <div class="profile-grid">
+                
                 <div class="profile-card">
-                    <img src="ceo.png" alt="Wesley Hardy" class="profile-img">
+                    <div class="img-container">
+                        <img src="ceo.png" alt="Wesley Hardy" class="profile-img">
+                    </div>
                     <span class="label">SUBJECT:</span> Wesley Hardy<br>
                     <span class="label">ROLE:</span> CEO / Lead Security Architect
                     <div class="output">
-                        Veteran Signal Corps professional with a foundation in tactical aerospace communications and FAA compliance. <br><br>
-                        Specializes in dismantling enterprise data silos and hardening infrastructure for global military reconnaissance operations. A "Silo Killer" who bridges the gap between hardware architecture and sustainable government compliance.
+                        <span class="highlight">[+] MISSION PROFILE:</span> <br>
+                        8-year U.S. Army Signal Corps veteran specialized in tactical aerospace communications and network hardening. Wesley is a "Silo Killer" with a history of dismantling fragmented legacy data systems to engineer unified, audit-defensible ERP environments. <br><br>
+                        From maintaining secure tactical links in Chinook aviation units to gutting and overhauling cybersecurity foundations for global reconnaissance operations, his focus is on sustainable compliance and aggressive infrastructure security.
                     </div>
                 </div>
 
                 <div class="profile-card">
-                    <img src="coo.png" alt="COO" class="profile-img">
+                    <div class="img-container">
+                        <img src="coo.png" alt="Daniel Schaffer" class="profile-img">
+                    </div>
                     <span class="label">SUBJECT:</span> Daniel Schaffer<br>
-                    <span class="label">ROLE:</span> COO / Systems Operations
+                    <span class="label">ROLE:</span> COO / Operations Director
                     <div class="output">
-                        [Insert background summary here - e.g., Senior Operations expert with extensive experience in scaling technical teams and streamlining mission-critical workflows.] <br><br>
-                        Focuses on the operational execution of security frameworks and ensuring organizational stability in high-growth, high-compliance environments.
+                        <span class="highlight">[+] MISSION PROFILE:</span> <br>
+                        A high-intelligence strategist who blends elite aviation experience with deep technical operational mastery. Daniel has commanded flight decks for both sensitive government contracts and major commercial operations, developing a meticulous approach to mission-critical safety and data management. <br><br>
+                        He translates complex technological requirements into streamlined operational reality. His expertise ensures that SysReaper’s high-level architectures are executed with the precision and uniformity required by federal oversight and global standards.
                     </div>
                 </div>
             </div>
 
-            <div style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">
+            <div class="section-break">
                 <span class="highlight">[ MISSION PHILOSOPHY ]</span>
                 <p class="output">
-                    SysReaper Labs was founded to bridge the gap between "checkbox compliance" and operational reality. With deep roots in Army Aviation and Global ERP management, our leadership treats security not as a hurdle, but as the foundation of a high-performing system.
+                    SysReaper Labs rejects "checkbox compliance." Founded on the front lines of Army Aviation and Global ERP management, we treat security as a prerequisite for operational excellence. We don't just secure your data—we harden your entire organizational lifecycle.
                 </p>
+            </div>
+
+            <div class="line">
+                <span style="color:white; font-weight:bold;">sysreaperlabs@parrot:~$</span> <span class="cursor"></span>
             </div>
         </div>
     </div>
