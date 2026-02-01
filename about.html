@@ -90,7 +90,7 @@
 
         @keyframes pulse-glow {
             0% { filter: drop-shadow(0 0 5px var(--sys-purple)); }
-            50% { filter: drop-shadow(0 0 20px var(--sys-purple)); }
+            50% { filter: drop-shadow(0 0 25px var(--sys-purple)); }
             100% { filter: drop-shadow(0 0 5px var(--sys-purple)); }
         }
 
@@ -99,12 +99,13 @@
             max-width: 320px;
             height: auto;
             border: 1px solid #333;
-            filter: grayscale(100%) contrast(1.1);
+            /* grayscale removed to show original photo colors */
+            filter: contrast(1.1);
             transition: 0.5s;
         }
 
         .profile-card:hover .profile-img {
-            filter: grayscale(0%) contrast(1);
+            filter: contrast(1.2) brightness(1.1);
         }
 
         .label { color: var(--sys-red); font-weight: bold; text-transform: uppercase; font-size: 11px; margin-right: 5px; }
@@ -155,8 +156,8 @@
                     <div class="output">
                         <span class="highlight">[+] OPERATIONAL HISTORY:</span> <br>
                         Veteran Signal Corps professional with a dual-domain background in tactical hardware and enterprise security architecture. <br><br>
-                        Wesley transitioned from 8 years of Army Aviation signal maintenance into Aerospace Flight Operations, where he mastered the complexities of **ITAR**-controlled environments and **FAA**-mandated compliance. <br><br>
-                        As a "Silo Killer," he has a proven record of gutting fragmented legacy systems to build foundations compliant with **DFARS 252.204-7012**, **NIST SP 800-171/53**, and **CMMC 2.0**. His expertise extends to securing financial data under **PCI-DSS** standards for global reconnaissance operations.
+                        Wesley transitioned from 8 years of Army Aviation signal maintenance into Aerospace Flight Operations, where he mastered the complexities of ITAR-controlled environments and FAA-mandated compliance. <br><br>
+                        As a Silo Killer, he has a proven record of gutting fragmented legacy systems to build foundations compliant with DFARS 252.204-7012, NIST SP 800-171/53, and CMMC 2.0. His expertise extends to securing financial data under PCI-DSS standards for global reconnaissance operations.
                     </div>
                 </div>
 
@@ -169,7 +170,7 @@
                     <div class="output">
                         <span class="highlight">[+] OPERATIONAL HISTORY:</span> <br>
                         A high-intelligence strategist who blends elite aerospace experience with deep technical operational mastery. Daniel has commanded flight decks for both sensitive government contracts and professional commercial companies. <br><br>
-                        He brings a meticulous "pilot’s perspective" to mission-critical operations, specializing in the uniformity of documentation and precision of workflow. <br><br>
+                        He brings a meticulous pilot’s perspective to mission-critical operations, specializing in the uniformity of documentation and precision of workflow. <br><br>
                         At SysReaper, he ensures that the highly regulated requirements of the defense industrial base are translated into sustainable, scalable technical operations that withstand the most rigorous audits.
                     </div>
                 </div>
@@ -178,7 +179,7 @@
             <div class="section-break">
                 <span class="highlight">[ MISSION PHILOSOPHY ]</span>
                 <p class="output">
-                    SysReaper Labs provides "Audit-Ready" security architecture. By aligning mission-critical military experience with enterprise-grade data management, we build frameworks that protect both the information and the operation.
+                    SysReaper Labs provides Audit-Ready security architecture. By aligning mission-critical military experience with enterprise-grade data management, we build frameworks that protect both the information and the operation.
                 </p>
             </div>
 
