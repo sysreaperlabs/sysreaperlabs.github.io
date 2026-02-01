@@ -6,7 +6,6 @@
     
     <title>Services | SysReaper Labs</title>
     <style>
-        /* Keeping your core styles identical for a seamless transition */
         :root {
             --terminal-green: #09ff00;
             --dark-bg: #080808;
@@ -53,7 +52,7 @@
             text-shadow: 0 0 8px var(--sys-purple);
         }
 
-                /* Restoring Glowing/Pulsing Logo Animation */
+        /* Glowing Logo */
         .logo-container {
             margin-bottom: 40px;
             text-align: center;
@@ -66,10 +65,16 @@
             100% { filter: drop-shadow(0 0 5px var(--sys-purple)); transform: scale(1); }
         }
 
-        .logo {
-            width: 320px; max-width: 85%; height: auto;
-        }
+        .logo { width: 320px; max-width: 85%; height: auto; }
 
+        /* RE-ADDED: Terminal Window Styling */
+        .terminal-window {
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid #333; border-radius: 8px;
+            width: 100%; max-width: 900px; padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            position: relative; margin-bottom: 30px;
+        }
 
         .terminal-header {
             position: absolute; top: 0; left: 0; right: 0;
