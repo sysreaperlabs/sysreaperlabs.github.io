@@ -46,7 +46,7 @@
         .terminal-window {
             background: rgba(0, 0, 0, 0.95);
             border: 1px solid #333; border-radius: 8px;
-            width: 100%; max-width: 950px; padding: 30px;
+            width: 100%; max-width: 1000px; padding: 30px;
             box-shadow: 0 0 20px rgba(161, 138, 236, 0.1);
             position: relative; margin-bottom: 30px;
         }
@@ -62,7 +62,6 @@
         .dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
         .red-dot { background: #ff5f56; } .yellow-dot { background: #ffbd2e; } .green-dot { background: #27c93f; }
 
-        /* Profile Section Styling */
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -81,7 +80,7 @@
             position: relative;
         }
 
-        /* Glowing Image Animation */
+        /* Glowing Animation for CEO/COO Photos */
         .img-container {
             width: 100%;
             margin-bottom: 20px;
@@ -97,25 +96,24 @@
 
         .profile-img {
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
             height: auto;
-            border: 1px solid #444;
-            /* grayscale start for that 'dossier' look, goes to color on hover */
-            filter: grayscale(100%);
+            border: 1px solid #333;
+            filter: grayscale(100%) contrast(1.1);
             transition: 0.5s;
         }
 
         .profile-card:hover .profile-img {
-            filter: grayscale(0%);
+            filter: grayscale(0%) contrast(1);
         }
 
-        .label { color: var(--sys-red); font-weight: bold; text-transform: uppercase; font-size: 12px; margin-right: 5px; }
+        .label { color: var(--sys-red); font-weight: bold; text-transform: uppercase; font-size: 11px; margin-right: 5px; }
         .highlight { color: var(--sys-purple); font-weight: bold; }
         .output { color: var(--text-white); font-size: 14px; line-height: 1.6; margin-top: 15px; }
         
         .section-break {
             border-top: 1px solid #333;
-            margin: 20px 0;
+            margin: 25px 0;
             padding-top: 20px;
         }
 
@@ -144,7 +142,7 @@
                 <span style="margin-left: 12px; font-size: 12px; color: #888;">sysreaperlabs@parrot: ~/leadership_dossier</span>
             </div>
             <br>
-            <p class="highlight"># ACCESSING_PERSONNEL_FILES... [SUCCESS]</p>
+            <p class="highlight"># ACCESSING_RESTRICTED_PERSONNEL_LOGS... [SUCCESS]</p>
             
             <div class="profile-grid">
                 
@@ -152,13 +150,13 @@
                     <div class="img-container">
                         <img src="ceo.png" alt="Wesley Hardy" class="profile-img">
                     </div>
-                    <span class="label">SUBJECT:</span> Wesley Hardy<br>
-                    <span class="label">ROLE:</span> CEO / Lead Security Architect
+                    <span class="label">ID:</span> Wesley Hardy<br>
+                    <span class="label">DESIGNATION:</span> CEO / Security Architect
                     <div class="output">
-                        <span class="highlight">[+] MISSION PROFILE:</span> <br>
+                        <span class="highlight">[+] OPERATIONAL HISTORY:</span> <br>
                         Veteran Signal Corps professional with a dual-domain background in tactical hardware and enterprise security architecture. <br><br>
-                        Wesley transitioned from 8 years of Army Aviation signal maintenance into Aerospace Flight Operations, where he mastered the complexities of ITAR-controlled environments and FAA-mandated compliance. <br><br>
-                        As a "Silo Killer," he has a proven record of gutting fragmented legacy systems to build foundations compliant with DFARS 252.204-7012, NIST SP 800-171/53, and CMMC 2.0. His expertise extends to securing financial data under PCI-DSS standards for global reconnaissance operations.
+                        Wesley transitioned from 8 years of Army Aviation signal maintenance into Aerospace Flight Operations, where he mastered the complexities of **ITAR**-controlled environments and **FAA**-mandated compliance. <br><br>
+                        As a "Silo Killer," he has a proven record of gutting fragmented legacy systems to build foundations compliant with **DFARS 252.204-7012**, **NIST SP 800-171/53**, and **CMMC 2.0**. His expertise extends to securing financial data under **PCI-DSS** standards for global reconnaissance operations.
                     </div>
                 </div>
 
@@ -166,12 +164,13 @@
                     <div class="img-container">
                         <img src="coo.png" alt="Daniel Schaffer" class="profile-img">
                     </div>
-                    <span class="label">SUBJECT:</span> Daniel Schaffer<br>
-                    <span class="label">ROLE:</span> COO / Operations Director
+                    <span class="label">ID:</span> Daniel Schaffer<br>
+                    <span class="label">DESIGNATION:</span> COO / Operations Director
                     <div class="output">
-                        <span class="highlight">[+] MISSION PROFILE:</span> <br>
-                        A high-intelligence strategist who blends elite aviation experience with deep technical operational mastery. Daniel has commanded flight decks for both sensitive government contracts and major commercial operations, developing a meticulous approach to mission-critical safety and data management. <br><br>
-                        He translates complex technological requirements into streamlined operational reality. His expertise ensures that SysReaper’s high-level architectures are executed with the precision and uniformity required by federal oversight and global standards.
+                        <span class="highlight">[+] OPERATIONAL HISTORY:</span> <br>
+                        A high-intelligence strategist who blends elite aerospace experience with deep technical operational mastery. Daniel has commanded flight decks for both sensitive government contracts and professional commercial companies. <br><br>
+                        He brings a meticulous "pilot’s perspective" to mission-critical operations, specializing in the uniformity of documentation and precision of workflow. <br><br>
+                        At SysReaper, he ensures that the highly regulated requirements of the defense industrial base are translated into sustainable, scalable technical operations that withstand the most rigorous audits.
                     </div>
                 </div>
             </div>
@@ -179,7 +178,7 @@
             <div class="section-break">
                 <span class="highlight">[ MISSION PHILOSOPHY ]</span>
                 <p class="output">
-                    SysReaper Labs rejects "checkbox compliance." Founded on the front lines of Army Aviation and Global ERP management, we treat security as a prerequisite for operational excellence. We don't just secure your data—we harden your entire organizational lifecycle.
+                    SysReaper Labs provides "Audit-Ready" security architecture. By aligning mission-critical military experience with enterprise-grade data management, we build frameworks that protect both the information and the operation.
                 </p>
             </div>
 
