@@ -156,13 +156,24 @@
             <p class="highlight"># ESTABLISHING SECURE HANDSHAKE...</p>
             <p style="color: var(--text-white); font-size: 14px;">Enter mission parameters below to initialize connection with SysReaper Command.</p>
 
-            <form action="https://formspree.io/f/your_form_id" method="POST">
-              <input type="text" name="name" placeholder="Enter ID..." required>
-              <input type="email" name="email" placeholder="name@domain.com" required>
-              <input type="text" name="framework" placeholder="CMMC, NIST..." required>
-              <textarea name="message" placeholder="Briefly describe your security needs..."></textarea>
-              
-              <button type="submit" class="transmit-btn">TRANSMIT DATA</button>
+            <form action="https://formspree.io/f/your_form_id_here" method="POST">
+                <div class="form-group">
+                    <label>// NAME_OR_ENTITY</label>
+                    <input type="text" name="name" required placeholder="Enter ID...">
+                </div>
+                <div class="form-group">
+                    <label>// RETURN_UPLINK_EMAIL</label>
+                    <input type="email" name="email" required placeholder="name@domain.com">
+                </div>
+                <div class="form-group">
+                    <label>// COMPLIANCE_FRAMEWORK_FOCUS</label>
+                    <input type="text" name="framework" placeholder="CMMC, NIST, DFARS, ITAR, PCI...">
+                </div>
+                <div class="form-group">
+                    <label>// MISSION_OBJECTIVES</label>
+                    <textarea name="message" rows="4" placeholder="Briefly describe your security or compliance needs..."></textarea>
+                </div>
+                <button type="submit" class="send-btn">TRANSMIT DATA</button>
             </form>
             
             <div class="contact-info">
