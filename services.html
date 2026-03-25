@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Services | SysReaper Labs</title>
     <style>
         :root {
@@ -29,51 +28,63 @@
         }
 
         .nav-bar {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 30px;
-            padding: 10px 0;
-            border-bottom: 1px solid #222;
+            width: 100%; max-width: 900px;
+            display: flex; justify-content: center;
+            gap: 25px; margin-bottom: 30px;
+            padding: 10px 0; border-bottom: 1px solid #222;
         }
 
         .nav-link {
-            color: var(--terminal-green);
-            text-decoration: none;
-            font-size: 13px;
-            letter-spacing: 2px;
-            transition: 0.3s;
+            color: var(--terminal-green); text-decoration: none;
+            font-size: 13px; letter-spacing: 2px; transition: 0.3s;
         }
 
         .nav-link:hover, .nav-link.active {
-            color: var(--sys-purple);
-            text-shadow: 0 0 8px var(--sys-purple);
+            color: var(--sys-purple); text-shadow: 0 0 8px var(--sys-purple);
         }
 
-        /* Glowing Logo */
-        .logo-container {
-            margin-bottom: 40px;
-            text-align: center;
-            animation: pulse 4s infinite ease-in-out;
+        /* Video at Top */
+        .video-wrapper {
+            width: 100%; max-width: 900px;
+            border: 1px solid #333; border-radius: 8px;
+            overflow: hidden; background: #000;
+            margin-bottom: 10px; position: relative;
+            aspect-ratio: 16 / 9;
         }
 
-        @keyframes pulse {
-            0% { filter: drop-shadow(0 0 5px var(--sys-purple)); transform: scale(1); }
-            50% { filter: drop-shadow(0 0 25px var(--sys-purple)); transform: scale(1.02); }
-            100% { filter: drop-shadow(0 0 5px var(--sys-purple)); transform: scale(1); }
+        #services-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .video-overlay {
+            position: absolute; top: 10px; left: 10px;
+            font-size: 12px; color: var(--sys-red);
+            text-shadow: 1px 1px 2px #000;
         }
 
-        .logo { width: 320px; max-width: 85%; height: auto; }
+        .unmute-container {
+            width: 100%; max-width: 900px;
+            text-align: right; margin-bottom: 30px;
+        }
 
-        /* RE-ADDED: Terminal Window Styling */
+        .audio-btn {
+            background: transparent; border: 1px solid var(--sys-purple);
+            color: var(--sys-purple); padding: 8px 15px;
+            font-family: 'Courier New', monospace; font-size: 12px;
+            cursor: pointer; text-transform: uppercase;
+            letter-spacing: 1px; transition: all 0.3s;
+        }
+
+        .audio-btn:hover {
+            background: var(--sys-purple); color: white;
+            box-shadow: 0 0 10px var(--sys-purple);
+        }
+
+        /* Terminal Styling */
         .terminal-window {
             background: rgba(0, 0, 0, 0.95);
             border: 1px solid #333; border-radius: 8px;
             width: 100%; max-width: 900px; padding: 30px;
             box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
-            position: relative; margin-bottom: 30px;
+            position: relative; margin-bottom: 40px;
         }
 
         .terminal-header {
@@ -92,27 +103,41 @@
         .output { color: var(--text-white); opacity: 0.95; margin-left: 20px; font-size: 15px; border-left: 1px solid #333; padding-left: 15px; }
         .highlight { color: var(--sys-purple); font-weight: bold; }
         .cmd-user { color: #ffffff; font-weight: bold; }
-        
-        .cursor {
-            display: inline-block; width: 10px; height: 18px;
-            background: var(--terminal-green); animation: blink 1s infinite;
-            vertical-align: middle;
+
+        /* Pulsing Logo below Terminal */
+        .logo-container {
+            margin-bottom: 20px;
+            text-align: center;
+            animation: pulse 4s infinite ease-in-out;
         }
 
-        @keyframes blink { 50% { opacity: 0; } }
+        @keyframes pulse {
+            0% { filter: drop-shadow(0 0 5px var(--sys-purple)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 15px var(--sys-purple)); transform: scale(1.02); }
+            100% { filter: drop-shadow(0 0 5px var(--sys-purple)); transform: scale(1); }
+        }
+
+        .logo { width: 220px; max-width: 85%; height: auto; }
 
         .contact-btn {
             display: inline-block; padding: 15px 40px;
             border: 2px solid var(--terminal-green); color: var(--terminal-green);
             text-decoration: none; font-weight: bold; transition: all 0.3s ease;
             text-transform: uppercase; letter-spacing: 3px; background: transparent;
-            margin-top: 20px;
+            margin-bottom: 60px;
         }
 
         .contact-btn:hover {
             background: var(--terminal-green); color: #000;
             box-shadow: 0 0 30px var(--terminal-green);
         }
+
+        .cursor {
+            display: inline-block; width: 10px; height: 18px;
+            background: var(--terminal-green); animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
 <body>
@@ -125,8 +150,16 @@
             <a href="contact.html" class="nav-link">[ 04 : CONNECT ]</a>
         </nav>
 
-        <div class="logo-container">
-            <img src="companylogo.png" alt="SysReaper Labs" class="logo">
+        <div class="video-wrapper">
+            <div class="video-overlay">● LIVE_FEED: SERVICE_CAPABILITIES</div>
+            <video muted loop playsinline id="services-video">
+                <source src="SysReaperLabsVideo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="unmute-container">
+            <button class="audio-btn" id="audio-trigger">▶ UNMUTE CAPABILITIES BRIEFING</button>
         </div>
 
         <div class="terminal-window">
@@ -153,20 +186,52 @@
             </div>
 
             <div class="line">
-                <span class="cmd-user">sysreaperlabs@parrot:</span><span class="cmd">~$ load_module --zero-trust</span>
-                <div class="output">
-                    <span class="highlight">[ ZERO TRUST ARCHITECTURE ]</span><br>
-                    Modernizing defense infrastructure via Identity and Access Management (IAM). Deploying least-privilege enforcement across Azure and AWS environments.
+                <span class="cmd-user">sysreaperlabs@parrot:</span><span class="cmd">~$ check_readiness --summary</span>
+                <div class="output" style="color: #888;">
+                    [ STATUS CHECK: ALIGNMENT PROTOCOL ]<br>
+                    [✔] ITAR/Export Control Boundaries Defined<br>
+                    [✔] Asset Inventory & CUI Mapping Completed<br>
+                    [✔] MFA & Conditional Access Enforcement Active<br>
+                    [✔] Incident Response Policy Formalized<br>
+                    <span class="highlight">>> SYSTEM READY FOR FORMAL ASSESSMENT <<</span>
                 </div>
             </div>
 
             <div class="line">
-                <span class="cmd-user">sysreaperlabs@parrot:<span class="cmd">~~$ </span> </span> <span class="cursor"></span>
+                <span class="cmd-user">sysreaperlabs@parrot:<span class="cmd">~$ </span> </span> <span class="cursor"></span>
             </div>
         </div>
+
+        <div class="logo-container">
+            <img src="companylogo.png" alt="SysReaper Labs" class="logo">
+        </div>
         
-        <a href="mailto:info@sysreaperlabs.com" class="contact-btn">Request Service Briefing</a>
+        <a href="contact.html" class="contact-btn">Request Service Briefing</a>
     </div>
 
+    <script>
+        const v = document.getElementById('services-video');
+        const audioBtn = document.getElementById('audio-trigger');
+        
+        window.addEventListener('load', () => {
+            v.play().catch(() => { console.log("Waiting for interaction."); });
+        });
+
+        audioBtn.addEventListener('click', () => {
+            if (v.muted) {
+                v.muted = false;
+                v.currentTime = 0; 
+                v.play();
+                audioBtn.innerHTML = "■ MUTE CAPABILITIES BRIEFING";
+                audioBtn.style.borderColor = "var(--sys-red)";
+                audioBtn.style.color = "var(--sys-red)";
+            } else {
+                v.muted = true;
+                audioBtn.innerHTML = "▶ UNMUTE CAPABILITIES BRIEFING";
+                audioBtn.style.borderColor = "var(--sys-purple)";
+                audioBtn.style.color = "var(--sys-purple)";
+            }
+        });
+    </script>
 </body>
 </html>
